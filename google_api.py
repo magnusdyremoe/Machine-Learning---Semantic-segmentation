@@ -1,5 +1,9 @@
 import googlemaps
 from datetime import datetime
+import requests
+import numpy as np
+import json
+from googlegeocoder import GoogleGeocoder
 
 import os
 from dotenv import load_dotenv
@@ -13,6 +17,7 @@ GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
     in google cloud console.
 """
 gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
+geocoder = GoogleGeocoder(GOOGLE_MAPS_API_KEY)
 
 """
     Try this commented block to get a feel of how the maps api handles geocoding.
@@ -38,3 +43,27 @@ print(peninsula_azerbaijan)
 
 atlantic_ocean = gmaps.reverse_geocode((0, 0))
 print(atlantic_ocean)
+
+
+
+
+"""
+    Code that generates images from google. Both roadmaps and satllite images.
+    The thought here is that the satelite images are used for training and roadmap images
+    are used as ground truth.
+"""
+def create_images():
+    lat = [-50, 0, 40, 60, 45]
+    lng = [-70, 30, 30, 11, -93.26]
+    zoom = [10, 7, 7, 12, 14]
+    maptype = ['satellite', 'roadmap']
+    size = '300x300'
+    for i in range(len(zoom)):
+        center = str(lat[i]) + ',' + str(lng[i])
+        for j in range(len(maptype)):
+            URL = 'https://maps.googleapis.com/maps/api/staticmap?center='+center+'&zoom='+str(zoom[i])+'&size='+size+'&maptype='+maptype[j]+'&key='+GOOGLE_MAPS_API_KEY
+            respone = requests.get(URL)
+            with open('./images/'+center+','+maptype[j]+'.png', 'wb') as file:
+                file.write(respone.content)
+
+create_images()
