@@ -7,7 +7,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib import colors
 
-turkey = cv2.imread('./images/40,30,roadmap.png')
+turkey = cv2.imread('./images/0,30,roadmap.png')
 turkey_rgb = cv2.cvtColor(turkey, cv2.COLOR_BGR2RGB)
 
 

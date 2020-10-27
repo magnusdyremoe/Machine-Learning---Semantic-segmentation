@@ -52,10 +52,8 @@ print(atlantic_ocean)
     The thought here is that the satelite images are used for training and roadmap images
     are used as ground truth.
 """
-def create_images():
-    lat = [-50, 0, 40, 60, 45]
-    lng = [-70, 30, 30, 11, -93.26]
-    zoom = [10, 7, 7, 12, 14]
+def create_images(lat, lng, zoom):
+    
     maptype = ['satellite', 'roadmap']
     size = '300x300'
     for i in range(len(zoom)):
@@ -66,4 +64,8 @@ def create_images():
             with open('./images/'+center+','+maptype[j]+'.png', 'wb') as file:
                 file.write(respone.content)
 
-create_images()
+lat = [64.43, 59.85]
+lng = [10.39, 10.65]
+zoom = [14, 12]
+
+create_images(lat, lng, zoom)
