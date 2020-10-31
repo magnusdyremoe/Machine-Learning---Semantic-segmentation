@@ -16,8 +16,8 @@ GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
     Create a .env file (touch .env) and add the api key. The api key can be found
     in google cloud console.
 """
-gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
-geocoder = GoogleGeocoder(GOOGLE_MAPS_API_KEY)
+#gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
+#geocoder = GoogleGeocoder(GOOGLE_MAPS_API_KEY)
 
 """
     Try this commented block to get a feel of how the maps api handles geocoding.
@@ -38,11 +38,11 @@ print(reverse_geocode_result)
     This can be used as a safety net to govern ground truth for water/land.
     Detecting color of pixel in road map should be the first check though.
 """
-peninsula_azerbaijan = gmaps.reverse_geocode((40.247393, 50.364690))
-print(peninsula_azerbaijan)
+#peninsula_azerbaijan = gmaps.reverse_geocode((40.247393, 50.364690))
+#print(peninsula_azerbaijan)
 
-atlantic_ocean = gmaps.reverse_geocode((0, 0))
-print(atlantic_ocean)
+#atlantic_ocean = gmaps.reverse_geocode((0, 0))
+#print(atlantic_ocean)
 
 
 
