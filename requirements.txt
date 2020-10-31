@@ -1,0 +1,7 @@
+opencv-python
+numpy == 1.19
+googlemaps == 4.4.2
+matplotlib == 3.3.2
+requests == 2.24.0
+python-dotenv == 0.15.0
+mplot3d-dragger == 0.0.0
